@@ -15,4 +15,10 @@ export class AppComponent {
   		}, 4000
   		);
   }
+
+  onAllumer(isAuth: boolean) {
+      isAuth != isAuth;
+      console.log('On allume tout !');
+  }
+
 }
