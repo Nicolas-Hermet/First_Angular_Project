@@ -17,7 +17,7 @@ export class AppComponent {
   }
 
   onAllumer(isAuth: boolean) {
-      isAuth != isAuth;
+      // isAuth != isAuth;
       console.log('On allume tout !');
   }
 
