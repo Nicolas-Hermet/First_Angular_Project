@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AppareilsService } from './services/appareils.service';
 
 @Component({
   selector: 'app-root',
@@ -13,31 +14,18 @@ export class AppComponent {
       () => {
         resolve(date);
       }, 2000
-    );   
+    );
   });
 
-  appareils = [
-    {
-      name: 'Machine à laver',
-      status: 'éteint'
-    },
-    {
-      name: 'Frigo',
-      status: 'allumé'
-    },
-    {
-      name: 'ordinateur',
-      status: 'éteint'
-    }
-  ];
+  appareil: AppareilsService;
 
 
-  constructor() {
-  	setTimeout(
-  		() => {
-  			this.isAuth = true;
-  		}, 4000
-  		);
+  constructor(private appareilService: AppareilsService) {
+    setTimeout(
+      () => {
+        this.isAuth = true;
+      }, 4000
+      );
   }
 
   onAllumer(isAuth: boolean) {
