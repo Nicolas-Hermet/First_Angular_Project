@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppareilsService } from './services/appareils.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { AppareilsService } from './services/appareils.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   isAuth = false;
   lastUpdate = new Promise((resolve, reject) => {
     const date = new Date();
@@ -17,7 +17,7 @@ export class AppComponent {
     );
   });
 
-  appareil: AppareilsService;
+  appareils: any[];
 
 
   constructor(private appareilService: AppareilsService) {
@@ -26,6 +26,12 @@ export class AppComponent {
         this.isAuth = true;
       }, 4000
       );
+  }
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.appareils = this.appareilService.appareils;
   }
 
   onAllumer(isAuth: boolean) {
