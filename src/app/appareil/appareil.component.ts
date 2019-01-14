@@ -9,20 +9,21 @@ export class AppareilComponent implements OnInit {
 
   @Input() appareilName: string;
   @Input() appareilStatus: string;
-  
+  @Input() index: number;
+
   constructor() { }
 
   ngOnInit() {
   }
 
   getStatus() {
-  	return this.appareilStatus;
+    return this.appareilStatus;
   }
 
-  getColor(){
-    if(this.appareilStatus==='éteint'){
+  getColor() {
+    if (this.appareilStatus === 'éteint') {
       return 'red';
-    }else if(this.appareilStatus==='allumé'){
+    } else if (this.appareilStatus === 'allumé') {
       return 'green';
     }
   }
