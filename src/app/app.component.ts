@@ -34,9 +34,16 @@ export class AppComponent implements OnInit {
     this.appareils = this.appareilService.appareils;
   }
 
-  onAllumer(isAuth: boolean) {
-      // isAuth != isAuth;
-      console.log('On allume tout !');
+  onAllumer() {
+    this.appareilService.switchOnAll();
+  }
+
+  onEteindre() {
+    if (confirm('Il va faire tout noir ?')) {
+      this.appareilService.switchOffAll();
+    } else {
+      return null;
+    }
   }
 
 }
