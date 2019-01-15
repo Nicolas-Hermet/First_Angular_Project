@@ -9,6 +9,13 @@ import {FormsModule} from '@angular/forms';
 import { AppareilsService } from './services/appareils.service';
 import { AuthComponent } from './auth/auth.component';
 import { AppareilViewComponent } from './appareil-view/appareil-view.component';
+import { Routes, RouterModule } from '@angular/router';
+
+const appRoutes: Routes = [
+  {path: 'appareils', component: AppareilViewComponent},
+  {path: 'auth', component: AuthComponent},
+  {path: '', component: AppareilViewComponent}
+];
 
 @NgModule({
   declarations: [
@@ -21,7 +28,8 @@ import { AppareilViewComponent } from './appareil-view/appareil-view.component';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
     AppareilsService
