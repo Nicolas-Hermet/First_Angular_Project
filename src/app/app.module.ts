@@ -7,12 +7,14 @@ import { MonPremierComponentComponent } from './mon-premier-component/mon-premie
 import { AppareilComponent } from './appareil/appareil.component';
 import {FormsModule} from '@angular/forms';
 import { AppareilsService } from './services/appareils.service';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MonPremierComponentComponent,
-    AppareilComponent
+    AppareilComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
