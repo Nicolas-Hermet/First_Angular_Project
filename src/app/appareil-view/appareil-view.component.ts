@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppareilsService } from '../services/appareils.service';
 
 @Component({
   selector: 'app-appareil-view',
@@ -6,10 +7,42 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./appareil-view.component.scss']
 })
 export class AppareilViewComponent implements OnInit {
+  isAuth = false;
+  appareils: any[];
 
-  constructor() { }
+  lastUpdate = new Promise((resolve, reject) => {
+    const date = new Date();
+    setTimeout(
+      () => {
+        resolve(date);
+      }, 2000
+    );
+  });
 
-  ngOnInit() {
+  constructor(private appareilService: AppareilsService) {
+    setTimeout(
+      () => {
+        this.isAuth = true;
+      }, 4000
+      );
+  }
+
+  ngOnInit(): void {
+    // Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    // Add 'implements OnInit' to the class.
+    this.appareils = this.appareilService.appareils;
+  }
+
+  onAllumer() {
+    this.appareilService.switchOnAll();
+  }
+
+  onEteindre() {
+    if (confirm('Il va faire tout noir ?')) {
+      this.appareilService.switchOffAll();
+    } else {
+      return null;
+    }
   }
 
 }
