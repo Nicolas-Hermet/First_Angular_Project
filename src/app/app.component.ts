@@ -9,7 +9,21 @@ import 'rxjs/add/observable/interval';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
+  secondes: number;
+
   ngOnInit() {
     const counter = Observable.interval(1000);
+    counter.subscribe(
+      (value) => {
+        this.secondes = value;
+      },
+      (error) => {
+        console.log('Il y a une erreur');
+      },
+      () => {
+        console.log('L\'observable est allé au bout de son action');
+      }
+    );
   }
 }
