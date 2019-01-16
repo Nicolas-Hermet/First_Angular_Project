@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/interval';
-
+import { Observable } from 'rxjs/';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +12,7 @@ export class AppComponent implements OnInit {
   secondes: number;
 
   ngOnInit() {
-    const counter = Observable.interval(1000);
+    const counter = interval(1000);
     counter.subscribe(
       (value) => {
         this.secondes = value;
