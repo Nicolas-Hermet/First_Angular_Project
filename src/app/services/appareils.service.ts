@@ -31,27 +31,27 @@ export class AppareilsService {
   }
 
   switchOnAll() {
-    for (let appareil of this.appareils) {
+    for (const appareil of this.appareils) {
       appareil.status = 'allumé';
     }
-    this.emitAppareilSubject()
+    this.emitAppareilSubject();
   }
 
   switchOffAll() {
-    for (let appareil of this.appareils) {
+    for (const appareil of this.appareils) {
       appareil.status = 'éteint';
     }
-    this.emitAppareilSubject()
+    this.emitAppareilSubject();
   }
 
   switchOnOne(i: number) {
     this.appareils[i].status = 'allumé';
-    this.emitAppareilSubject()
+    this.emitAppareilSubject();
   }
 
   switchOffOne(i: number) {
     this.appareils[i].status = 'éteint';
-    this.emitAppareilSubject()
+    this.emitAppareilSubject();
   }
 
   getAppareilById(id: number) {
