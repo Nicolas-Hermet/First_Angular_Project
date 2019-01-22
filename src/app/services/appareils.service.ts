@@ -82,13 +82,28 @@ export class AppareilsService {
 
   saveAppareilsToServer() {
     this.httpClient
-    .post(this.myUrl, this.appareils)
+    .put(this.myUrl, this.appareils)
     .subscribe(
       () => {
         console.log('Enregistrement Terminé !');
       },
       (error) => {
-        console.log('Il y a une erreur d\'enregistrement en base');
+        console.log('Il y a une erreur d\'enregistrement en base : ' + error);
+      }
+    );
+  }
+
+  getAppareilsFromServer() {
+    this.httpClient
+    .get<any[]>(this.myUrl)
+    .subscribe(
+      (Response) => {
+        this.appareils = Response;
+        this.emitAppareilSubject();
+        console.log('Chargement des datas ok')
+      },
+      (error) => {
+        console.log('Erreur de chargement de la base : ' + error);
       }
     );
   }
