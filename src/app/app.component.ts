@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, interval, Subscription } from 'rxjs/';
+// import { data_json } from './env';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,11 @@ import { Observable, interval, Subscription } from 'rxjs/';
 })
 export class AppComponent implements OnInit, OnDestroy {
 
+  myUrl = require('../../env.json')['myUrl'];
+  // myUrl: string = data_json.myUrl;
   secondes: number;
   counterSubscritpion: Subscription;
+
 
   ngOnInit() {
     const counter = interval(1000);
@@ -29,4 +33,5 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.counterSubscritpion.unsubscribe();
   }
+
 }
