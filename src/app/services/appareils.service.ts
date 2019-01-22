@@ -100,7 +100,7 @@ export class AppareilsService {
       (Response) => {
         this.appareils = Response;
         this.emitAppareilSubject();
-        console.log('Chargement des datas ok')
+        console.log('Chargement des datas ok');
       },
       (error) => {
         console.log('Erreur de chargement de la base : ' + error);
