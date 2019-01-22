@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,8 @@ import { Subject } from 'rxjs';
 export class AppareilsService {
 
   appareilSubject = new Subject<any[]>();
-
+  // private myUrl = require('../../../env.json')['myUrl'].toString();
+  private myUrl = require('../../../env.json')['myUrl'] + '/appareils.json';
   private appareils = [
     {
       id: 1,
@@ -25,6 +27,8 @@ export class AppareilsService {
       status: 'éteint'
     }
   ];
+
+  constructor(private httpClient: HttpClient) { }
 
   emitAppareilSubject() {
     this.appareilSubject.next(this.appareils.slice());
@@ -74,5 +78,18 @@ export class AppareilsService {
     appareilObject.id = this.appareils.length;
     this.appareils.push(appareilObject);
     this.emitAppareilSubject();
+  }
+
+  saveAppareilsToServer() {
+    this.httpClient
+    .post(this.myUrl, this.appareils)
+    .subscribe(
+      () => {
+        console.log('Enregistrement Terminé !');
+      },
+      (error) => {
+        console.log('Il y a une erreur d\'enregistrement en base');
+      }
+    );
   }
 }
